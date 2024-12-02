@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "Replacing ~/.bashrc with symlink."
+ln -sf "$PWD/bashrc" ~/.bashrc
+
+echo "Replacing ~/.inputrc with symlink."
+ln -sf "$PWD/inputrc" ~/.inputrc
+
+echo "Replacing ~/.dircolors with symlink."
+ln -sf "$PWD/dircolors" ~/.dircolors
