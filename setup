@@ -1,4 +1,6 @@
 #!/bin/sh
 
 ./wezterm/setup
+./bash/setup
 ./tmux/setup
+./vim/setup
