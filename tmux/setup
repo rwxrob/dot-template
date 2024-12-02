@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Replacing ~/.tmux.conf with symlink."
+ln -sf "$PWD/tmux.conf" ~/.tmux.conf

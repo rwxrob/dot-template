@@ -1,3 +1,4 @@
 #!/bin/sh
 
 ./wezterm/setup
+./tmux/setup
