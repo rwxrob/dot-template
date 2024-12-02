@@ -1,0 +1,4 @@
+set editing-mode vi
+set enable-bracketed-paste on
+set bell-style none
+set keymap vi
