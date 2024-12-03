@@ -44,7 +44,7 @@ end),
   term = "xterm-254color",
   animation_fps = 60,
   max_fps = 60,
-  window_decorations = "RESIZE",
+  --window_decorations = "RESIZE",
 
   enable_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
