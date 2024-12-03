@@ -19,15 +19,11 @@ return {
   window_close_confirmation = 'NeverPrompt',
   default_prog = detect_shell(),
 
-  font_size = 41,
-  font = wezterm.font_with_fallback({
-    "UbuntuMono Nerd Font",                  -- installed
-    "Apple Color Emoji", "SF Mono", "Menlo", -- mac builtins
-    "Segoe UI Emoji", "Consolas"             -- win builtins
-  }),
-
-  initial_cols = 74,
-  initial_rows = 22,
+  color_scheme = 'Gruvbox Material (Gogh)',
+  font = wezterm.font("UbuntuMono Nerd Font"),
+  --font_size = 41,
+  --initial_cols = 74,
+  --initial_rows = 22,
 
   wezterm.on('gui-startup', function(cmd)
     local tab, pane, window = mux.spawn_window(cmd or {})
@@ -43,12 +39,11 @@ end),
 
   term = "xterm-254color",
   animation_fps = 60,
-  max_fps = 60,
-  --window_decorations = "RESIZE",
+  max_fps = 60
 
-  enable_tab_bar = false,
-  hide_tab_bar_if_only_one_tab = true,
-  color_scheme = 'Gruvbox Material (Gogh)'
+  --window_decorations = "RESIZE",
+  --enable_tab_bar = false,
+  --hide_tab_bar_if_only_one_tab = true,
 }
 
 

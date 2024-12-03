@@ -1,9 +1,15 @@
-#!/bin/sh
-
+#!/usr/bin/env bash
 
 echo "Replacing ~/.wezterm.lua with symlink."
 ln -sf "$PWD/wezterm.lua" ~/.wezterm.lua
 
-echo "Installing UbuntuMonoNerd font in ~/.local/share/fonts."
-mkdir -p ~/.local/share/fonts
-unzip UbuntuMono.zip -d ~/.local/share/fonts/
+echo "Installing UbuntuMonoNerd fonts."
+if [[ "$OSTYPE" = "msys" ]]; then
+	# shellcheck disable=SC2016
+	powershell -Command '& ([scriptblock]::Create((iwr "https://to.loredo.me/Install-NerdFont.ps1"))) -Name "ubuntu-mono" -Confirm:$false
+'
+else
+	mkdir -p ~/.local/share/fonts
+	unzip UbuntuMono.zip -d ~/.local/share/fonts/
+	fc-cache -fv
+fi
