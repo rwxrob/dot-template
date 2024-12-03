@@ -1,12 +1,12 @@
 #!/bin/sh
 
-echo "Replacing ~/.vimrc with symlink."
+echo "Replacing ~/.vimrc with symlink/copy."
 ln -sf "$PWD/vimrc" "$HOME/.vimrc"
 
-echo "Replacing ~/.vim/autoload/plug.vim with symlink."
+echo "Replacing ~/.vim/autoload/plug.vim with symlink/copy."
 mkdir -p "$HOME/.vim/autoload"
 ln -sf "$PWD/plug.vim" "$HOME/.vim/autoload/plug.vim"
 
-echo "Replacing ~/.config/nvim/init.lua with symlink."
+echo "Replacing ~/.config/nvim/init.lua with symlink/copy."
 mkdir -p "$HOME/.config/nvim"
 ln -sf "$PWD/init.lua" "$HOME/.config/nvim/init.lua"
