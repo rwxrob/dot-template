@@ -1,6 +1,7 @@
 #!/bin/sh
 
-./wezterm/setup
-./bash/setup
-./tmux/setup
-./vim/setup
+for i in wezterm bash tmux vim; do
+	cd "$i" || exit
+	./setup
+	cd - || exit
+done
