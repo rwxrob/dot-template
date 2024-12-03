@@ -20,7 +20,7 @@ return {
   default_prog = detect_shell(),
 
   color_scheme = 'Gruvbox Material (Gogh)',
-  font = wezterm.font("UbuntuMono Nerd Font"),
+  font = wezterm.font("Ubuntu Mono"),
   --font_size = 41,
   --initial_cols = 74,
   --initial_rows = 22,
