@@ -21,7 +21,7 @@ return {
 
   color_scheme = 'Gruvbox Material (Gogh)',
   font = wezterm.font("Ubuntu Mono"),
-  --font_size = 41,
+  font_size = 26,
   --initial_cols = 74,
   --initial_rows = 22,
 
