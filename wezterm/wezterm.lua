@@ -20,11 +20,11 @@ return {
   default_prog = detect_shell(),
 
   font_size = 41,
-  font = wezterm.font_with_fallback(
+  font = wezterm.font_with_fallback({
     "UbuntuMono Nerd Font",                  -- installed
     "Apple Color Emoji", "SF Mono", "Menlo", -- mac builtins
     "Segoe UI Emoji", "Consolas"             -- win builtins
-  ),
+  }),
 
   initial_cols = 74,
   initial_rows = 22,
