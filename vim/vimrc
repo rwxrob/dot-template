@@ -191,8 +191,12 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
       Plug 'xolox/vim-misc'
       Plug 'xolox/vim-lua-ftplugin'
       Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-      Plug 'neoclide/coc.nvim', {'branch': 'release'}
-      Plug 'NStefan002/screenkey.nvim'
+      if v:version >= 8000000
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+      endif
+      if exists('$NVIM_SCREENKEY')
+        Plug 'NStefan002/screenkey.nvim'
+      endif
     else
       Plug 'dahu/vim-asciidoc'
     endif
