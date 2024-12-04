@@ -252,8 +252,13 @@ EOF
   au FileType go nmap <leader>m ilog.Print("made")<CR><ESC>
   au FileType go nmap <leader>n iif err != nil {return err}<CR><ESC>
 
-  colorscheme desert " default
-  colorscheme gruvbox-material
+  if !exists('g:colors_name') || g:colors_name !=# 'gruvbox-material'
+    try
+      colorscheme gruvbox-material
+    catch /^Vim\%((\a\+)\)\=:E185/
+      colorscheme desert
+    endtry
+  endif
 
 else
   autocmd vimleavepre *.go !gofmt -w % " backup if fatih fails
