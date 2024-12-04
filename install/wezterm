@@ -5,7 +5,7 @@ install-wezterm() {
 		brew install wezterm
 		return
 	fi
-	if [[ $OSTYPE =~ ^darwin ]]; then
+	if [[ $OSTYPE =~ ^msys ]]; then
 		winget install --id wez.wezterm
 		return
 	fi
