@@ -12,12 +12,8 @@ install-wezterm() {
 		return
 	fi
 
-	mkdir -p ~/.local/bin
-	file=20240203-110809-5046fc22-Ubuntu20.04.AppImage
-	curl -sSL \
-		"https://github.com/wez/wezterm/releases/download/$file" \
-		wezterm
-	chmod +x ~/.local/bin/wezterm
+	# TODO add Linux installer
+
 }
 
 install-wezterm
