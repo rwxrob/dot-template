@@ -193,9 +193,9 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
       if v:version >= 8000000
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
-      endif
-      if exists('$NVIM_SCREENKEY')
-        Plug 'NStefan002/screenkey.nvim'
+        if exists('$NVIM_SCREENKEY')
+          Plug 'NStefan002/screenkey.nvim'
+        endif
       endif
     else
       Plug 'dahu/vim-asciidoc'
@@ -203,7 +203,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   call plug#end()
 
-  if has('nvim') && exists('$NVIM_SCREENKEY') && luaeval('pcall(require, "screenkey")')
+  if has('nvim') && exists('$NVIM_SCREENKEY') &&  luaeval('pcall(require, "screenkey")')
     let g:screenkey_statusline_component=1
     set winbar=%{%v:lua.require('screenkey').get_keys()%}
     nnoremap sc :Screenkey<CR>
