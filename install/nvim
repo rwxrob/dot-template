@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install-go() {
+install-neovim() {
 	if [[ $OSTYPE =~ ^darwin ]]; then
 		brew install neovim
 		return
