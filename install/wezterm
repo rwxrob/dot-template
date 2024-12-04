@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+install-wezterm() {
+	if [[ $OSTYPE =~ ^darwin ]]; then
+		brew install wezterm
+		return
+	fi
+	if [[ $OSTYPE =~ ^darwin ]]; then
+		winget install --id wez.wezterm
+		return
+	fi
+	wget -qO- https://apt.fury.io/wez/wezterm.asc | sudo tee /etc/apt/trusted.gpg.d/wezterm.asc
+	echo "deb [arch=$(dpkg --print-architecture)] https://apt.fury.io/wez/ /" | sudo tee /etc/apt/sources.list.d/wezterm.list
+	sudo apt-get update
+	sudo apt-get install -y wezterm
+}
+
+install-wezterm
