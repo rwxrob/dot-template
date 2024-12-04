@@ -190,8 +190,8 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     if has('nvim')
       Plug 'xolox/vim-misc'
       Plug 'xolox/vim-lua-ftplugin'
-      Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
       if v:version >= 8000000
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
       endif
       if exists('$NVIM_SCREENKEY')
