@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+install-go() {
+	if [[ $OSTYPE =~ ^darwin ]]; then
+		brew install tmux
+		return
+	fi
+	if [[ $OSTYPE =~ ^msys ]]; then
+		echo "There is no tmux for Git Bash"
+		return
+	fi
+	sudo apt install -y tmux
+}
+
+install-tmux

@@ -1,6 +1,6 @@
 # 🔰 Beginner dotfiles template
 
-_Coming soon..._
+<https://rwxrob.github.io/books/code-mage>
 
 This repo is for beginners who want to start with some good default dotfiles (or just copy mine). Sharing (and stealing) "dot files" is a long standing tradition in the Unix world. Just look how many there are [here on GitHub](https://github.com/search?q=dotfiles&type=repositories).
 

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+install-go() {
+	if [[ $OSTYPE =~ ^darwin ]]; then
+		brew install golang
+		return
+	fi
+	if [[ $OSTYPE =~ ^msys ]]; then
+		winget install --id golang.go
+		return
+	fi
+	sudo apt install -y golang
+}
+
+install-go
