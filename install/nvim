@@ -9,7 +9,7 @@ install-neovim() {
 		winget install --id neovim.neovim
 		return
 	fi
-	sudo add-apt-repository ppa:neovim-ppa/unstable
+	sudo add-apt-repository ppa:neovim-ppa/stable
 	sudo apt-get install -y software-properties-common
 	sudo apt-get update
 	sudo apt-get install -y neovim
