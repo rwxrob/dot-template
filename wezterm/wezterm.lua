@@ -37,9 +37,9 @@ end
 
 local function detect_font()
   if os == "windows" then
-    return wezterm.font({"Ubuntu Mono"})
+    return wezterm.font("Ubuntu Mono")
   else
-    return wezterm.font({"UbuntuMono Nerd Font"})
+    return wezterm.font("UbuntuMono Nerd Font")
   end
 end
 
