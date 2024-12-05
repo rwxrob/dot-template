@@ -164,18 +164,29 @@ set ruf=%30(%=%#LineNr#%.50F\ [%{strlen(&ft)?&ft:'none'}]\ %l:%c\ %p%%%)
 if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   " github.com/junegunn/vim-plug
+  " There can only be one plug#begin block so all this
+  " has to be here instead of split into init.lua as well.
+ 
   call plug#begin('~/.local/share/vim/plugins')
-
     Plug 'conradirwin/vim-bracketed-paste'
     Plug 'sainnhe/gruvbox-material'
     Plug 'fatih/vim-go' " GoInstallBinaries separately
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'rwxrob/vim-pandoc-syntax-simple'
     Plug 'dense-analysis/ale'
-    if !has('nvim')
+    if has('nvim-0.8')
+      Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+      Plug 'neoclide/coc.nvim', {'branch': 'release'}
+      if exists('$NVIM_SCREENKEY')
+        Plug 'NStefan002/screenkey.nvim'
+      endif
+    endif
+    if has('nvim')
+      Plug 'xolox/vim-misc'
+      Plug 'xolox/vim-lua-ftplugin'
+    else
       Plug 'dahu/vim-asciidoc'
     endif
-
   call plug#end()
 
   set signcolumn=yes
