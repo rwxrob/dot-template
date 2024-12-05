@@ -177,7 +177,6 @@ endif
 if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   " github.com/junegunn/vim-plug
-
   call plug#begin('~/.local/share/vim/plugins')
 
     Plug 'conradirwin/vim-bracketed-paste'
@@ -190,13 +189,14 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     if has('nvim')
       Plug 'xolox/vim-misc'
       Plug 'xolox/vim-lua-ftplugin'
-      if v:version >= 8000000
+      if v:version >= 800
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         if exists('$NVIM_SCREENKEY')
           Plug 'NStefan002/screenkey.nvim'
         endif
       endif
+
     else
       Plug 'dahu/vim-asciidoc'
     endif
