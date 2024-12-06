@@ -37,7 +37,6 @@ export CLIP_DIR="$VIDEOS/clips"
 export CLIP_DATA="$GHREPOS/clip/data"
 export CLIP_VOLUME=0
 export CLIP_SCREEN=0
-export TERM=xterm-256color
 export CLICOLOR=1
 export HRULEWIDTH=73
 export GOPATH="$HOME/.local/go"
@@ -262,9 +261,18 @@ alias gitl="git log -n 5 --graph --decorate --oneline"
 alias gp="git push"
 alias gptags="git push origin --tags"
 alias km="kimono"
+alias s=wee
+alias cur="vi ~/.currently"
 
-_have vim && alias vi=vim && export EDITOR=vim && export VISUAL=vim
-_have nvim && alias vi=nvim && export EDITOR=nvim && export VISUAL=nvim
+set-editor() {
+	export EDITOR="$1"
+	export VISUAL="$1"
+	export GH_EDITOR="$1"
+	export GIT_EDITOR="$1"
+	alias vi="\$EDITOR"
+}
+_have "vim" && set-editor vi
+_have "nvim" && set-editor nvim
 
 # ----------------------------- functions ----------------------------
 
