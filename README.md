@@ -26,6 +26,15 @@ If you prefer a more granular `setup` process find the same script name in the s
 
 The `setup` script (for those who cannot yet understand the source) just creates symbolic links to everything in this repo at the appropriate place so that anytime you make a customization you can simple run `savedot` from any directory and it will push the latest changes to GitHub with a generic `saved` commit message. That way everything is ready on the next computer you need to run it on.
 
+## Suggested home directory structure
+
+This set of dotfiles is designed with the following conventional organization of your home directory as follows:
+
+- Same account name `/home/you` as GitHub account name `https://github.com/you`
+- `~/Repos/github.com/you` - GitHub repos location
+- `~/Repos/github.com/you/dot` or `~/dot` or `~/dotfile` - dotfiles directory location
+- `~/Downloads` - downloads directory
+
 ## Additional installers
 
 The first thing I usually want to do after setting up my dot files on a new system is to install my favorite applications so I've included a number of install scripts under [`install`](install). You can read more about them in the README.md there.
