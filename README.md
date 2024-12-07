@@ -6,21 +6,15 @@ This repo is for beginners who want to start with some good default dotfiles (or
 
 ## Install
 
-1. Click on "Use this template"
-2. Select "Create a new repository"
-3. Name new repo `dotfiles` or just `dot`
-4. Login to shell account
-5. Make a directory for repos and change into:
-    - `mkdir -p ~/Repos/github.com/you/`
-    - `cd ~/Repos/github.com/you`
-6. Clone it with `git` or `gh`
-    - `gh repo clone dot` (simplest)
-    - `git clone git@github.com:you/dot` (if you have ssh)
-    - `git clone https://github.com/you/dot` (works on vpn)
-7. Run the `setup` script to link configurations:
-    - `./setup`
+The [*Code Mage book*](https://rwxrob.github.io/books/code-mage) covers this step by step if you prefer. Otherwise, this will get you going the quickest:
 
-If you prefer a more granular `setup` process find the same script name in the subdirectories.
+```sh
+mkdir -p ~/Repos/github.com/you
+cd ~/Repos/github.com/you
+gh repo create dot --template rwxrob/dot-template --private --clone
+cd dot
+./setup
+```
 
 ## What setup does
 
@@ -34,6 +28,8 @@ This set of dotfiles is designed with the following conventional organization of
 - `~/Repos/github.com/you` - GitHub repos location
 - `~/Repos/github.com/you/dot` or `~/dot` or `~/dotfile` - dotfiles directory location
 - `~/Downloads` - downloads directory
+
+This organization is based on the most common starting home directory structures on all OSes.
 
 ## Additional installers
 
