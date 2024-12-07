@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+message="$*"
+[[ -z "$message" ]] && message=save
+
+cd dot || cd dotfiles || exit
+git add -A .
+git commit -m "$message"
+git push
