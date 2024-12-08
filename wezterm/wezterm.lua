@@ -53,6 +53,11 @@ return {
   font = detect_font(),
   font_size = 26,
 
+  colors = {
+    cursor_bg = '#928374',
+    cursor_border = '#928374',
+  },
+
   window_padding = {
    left = 40,
    right = 0,
