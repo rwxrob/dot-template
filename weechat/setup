@@ -7,6 +7,7 @@ EOM
 read -rp "Twich user name: " user
 read -rp "Channels separated by commas: " channels
 echo "Generate your OAuth token here: https://antiscuff.com/oauth"
+echo "Revoke tokens if exposed: https://id.twitch.tv/oauth2/revoke"
 read -rp "Paste (starting with 'oauth:', empty keeps current): " token
 
 mkdir -p ~/.weechat
