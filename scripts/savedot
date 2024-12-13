@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
 message="$*"
-[[ -z "$message" ]] && message=save
-
-cd dot || cd dotfiles || exit
+test -z "$message" && message=save
+cd dot || cd dotfiles || (echo "Unable to cd into dot or dotfiles." >&2 && exit 1)
 git add -A .
 git commit -m "$message"
-git push
+if type push;then
+	push
+else
+	git push
+fi
