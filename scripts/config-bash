@@ -1,0 +1,8 @@
+#!/bin/sh
+
+dir=$(dirname $(dirname "$(realpath "$0")"))/config/bash
+
+for i in bashrc inputrc dircolors; do
+	echo "$HOME/.$i -> $dir/$i"
+	ln -sf "$dir/$i" "$HOME/.$i"
+done
