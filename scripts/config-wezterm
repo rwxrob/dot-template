@@ -13,7 +13,7 @@ config-wezterm() {
 
 	if [[ $(uname -r) =~ microsoft ]]; then
 		# shellcheck disable=SC2016
-		user=$(powershell.exe -Command 'Get-Process -Name wsl | Select-Object Id, ProcessName, @{Name="User";Expression={(Get-WmiObject Win32_Process -Filter "ProcessId=$($_.Id)").GetOwner().User}}')
+		user=$(powershell.exe -Command 'Get-Process -Name wsl | Select-Object Id, ProcessName, @{Name="User";Expression={(Get-WmiObject Win32_Process -Filter "ProcessId=$($_.Id)").GetOwner().User}}' | grep wsl | awk '{print $3}')
 		target="/mnt/c/users/$user/appdata/local/wezterm"
 		mkdir -p "$target"
 		echo "$target/wezterm.lua -> $dir/wezterm.lua"
