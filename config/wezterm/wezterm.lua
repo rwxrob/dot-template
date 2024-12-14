@@ -22,9 +22,10 @@ local os = detect_os()
 local function detect_shell()
   if os == "windows" then
     return {
-      "C:\\Program Files\\Git\\bin\\bash.exe",
-      "--login",
-      "-i",
+      "wsl.exe",
+      --"C:\\Program Files\\Git\\bin\\bash.exe",
+      --"--login",
+      --"-i",
     }
   elseif os == "mac" then
     return { "/opt/homebrew/bin/bash", "--login", }
