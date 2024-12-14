@@ -5,19 +5,18 @@ config-wezterm() {
 	target=~/.wezterm.lua
 
 	if [[ $OSTYPE =~ ^msys ]]; then
-		target="$LOCALAPPDATA/wezterm"
-		echo "$target/wezterm.lua -> $dir/wezterm.lua"
-		ln -sfn "$dir/wezterm.lua" "$target/wezterm.lua"
+		target="/c/users/$user"
+		echo "Copying $dir/wezterm.lua -> $target/.wezterm.lua"
+		cp "$dir/wezterm.lua" "$target/.wezterm.lua"
 		return
 	fi
 
 	if [[ $(uname -r) =~ microsoft ]]; then
-		# shellcheck disable=SC2016
 		user=$(powershell.exe -Command 'Get-Process -Name wsl | Select-Object Id, ProcessName, @{Name="User";Expression={(Get-WmiObject Win32_Process -Filter "ProcessId=$($_.Id)").GetOwner().User}}' | grep wsl | awk '{print $3}')
-		target="/mnt/c/users/$user/appdata/local/wezterm"
+		target="/mnt/c/users/$user"
 		mkdir -p "$target"
-		echo "$target/wezterm.lua -> $dir/wezterm.lua"
-		ln -sfn "$dir/wezterm.lua" "$target/wezterm.lua"
+		echo "Copying $dir/wezterm.lua -> $target/.wezterm.lua"
+		cp "$dir/wezterm.lua" "$target/.wezterm.lua"
 		return
 	fi
 
