@@ -12,7 +12,7 @@ config-wezterm() {
 	fi
 
 	if [[ $(uname -r) =~ microsoft ]]; then
-		user=$(powershell.exe -Command 'Get-Process -Name wsl | Select-Object Id, ProcessName, @{Name="User";Expression={(Get-WmiObject Win32_Process -Filter "ProcessId=$($_.Id)").GetOwner().User}}' | grep wsl | awk '{print $3}')
+		user=$(powershell.exe -Command 'Get-Process -Name wsl | Select-Object Id, ProcessName, @{Name="User";Expression={(Get-WmiObject Win32_Process -Filter "ProcessId=$($_.Id)").GetOwner().User}}' | grep wsl | head -1 | awk '{print $3}')
 		target="/mnt/c/users/$user"
 		mkdir -p "$target"
 		echo "Copying $dir/wezterm.lua -> $target/.wezterm.lua"
