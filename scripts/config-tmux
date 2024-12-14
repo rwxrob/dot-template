@@ -1,5 +1,5 @@
 #!/bin/sh
 
-dir=$(dirname $(dirname "$(realpath "$0")"))/config/tmux
+dir="$(dirname "$(dirname "$(realpath "$0")")")/config/tmux"
 echo "$HOME/.tmux.conf -> $dir/tmux.conf"
 ln -sfn "$dir/tmux.conf" ~/.tmux.conf

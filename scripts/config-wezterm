@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-
-config-wezterm () {
-	dir=$(dirname $(dirname "$(realpath "$0")"))/config/wezterm
+config-wezterm() {
+	dir="$(dirname "$(dirname "$(realpath "$0")")")/config/wezterm"
 	target=~/.wezterm.lua
 
-	if [[ $OSTYPE =~ ^msys ]]; then
+	if [[ $OSTYPE =~ ^msys ]]; then # MSYS2 or Git-Bash
 		: TODO
-	elif [[ $(uname -r) =~ microsoft  ]]; then
+
+	elif [[ $(uname -r) =~ microsoft ]]; then # Microsoft WSL2
 		: TODO
 	fi
 
