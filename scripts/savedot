@@ -2,7 +2,7 @@
 
 message="$*"
 test -z "$message" && message=save
-cd dot || cd dotfiles || (echo "Unable to cd into dot or dotfiles." >&2 && exit 1)
+cd "$DOTFILES" || dot || cd dotfiles || (echo "Unable to cd into dot or dotfiles." >&2 && exit 1)
 git add -A .
 git commit -m "$message"
 if type push;then
