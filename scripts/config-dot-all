@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+read -rp "Do you really want to reconfigure everything destructively? [y|N] " resp
+[[ ${resp,,} != y ]] && exit 0
+
+cd "$DOTFILES" || cd dot || cd dotfiles || (echo "Unable to cd into dot or dotfiles." >&2 && exit 1)
+configs=($(find config -maxdepth 1 -type d -exec basename {} \; | tail -n +2))
+for i in "${configs[@]}"; do
+	cd "config/$i" || exit
+	./config-$i
+	cd - || exit
+done
