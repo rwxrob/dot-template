@@ -1,0 +1,14 @@
+#!/bin/sh
+
+dir=$(dirname $(dirname "$(realpath "$0")"))/config/vim
+
+echo "$HOME/.vimrc -> $dir/vimrc"
+ln -sfn "$dir/vimrc" "$HOME/.vimrc"
+
+echo "$HOME/.vim/autoload/plug.vim -> $dir/plug.vim"
+mkdir -p "$HOME/.vim/autoload"
+ln -sfn "$dir/plug.vim" "$HOME/.vim/autoload/plug.vim"
+
+echo "$HOME/.config/nvim/init.lua -> $dir/init.lua"
+mkdir -p "$HOME/.config/nvim"
+ln -sfn "$dir/init.lua" "$HOME/.config/nvim/init.lua"
