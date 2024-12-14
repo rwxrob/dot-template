@@ -4,15 +4,26 @@ config-wezterm() {
 	dir="$(dirname "$(dirname "$(realpath "$0")")")/config/wezterm"
 	target=~/.wezterm.lua
 
-	if [[ $OSTYPE =~ ^msys ]]; then # MSYS2 or Git-Bash
-		: TODO
+	if [[ $OSTYPE =~ ^msys ]]; then
+		target="$LOCALAPPDATA/wezterm"
+		echo "$target/wezterm.lua -> $dir/wezterm.lua"
+		ln -sfn "$dir/wezterm.lua" "$target/wezterm.lua"
+		return
+	fi
 
-	elif [[ $(uname -r) =~ microsoft ]]; then # Microsoft WSL2
-		: TODO
+	if [[ $(uname -r) =~ microsoft ]]; then
+		# shellcheck disable=SC2016
+		user=$(powershell.exe -Command 'Get-Process -Name wsl | Select-Object Id, ProcessName, @{Name="User";Expression={(Get-WmiObject Win32_Process -Filter "ProcessId=$($_.Id)").GetOwner().User}}')
+		target="/mnt/c/users/$user/appdata/local/wezterm"
+		mkdir -p "$target"
+		echo "$target/wezterm.lua -> $dir/wezterm.lua"
+		ln -sfn "$dir/wezterm.lua" "$target/wezterm.lua"
+		return
 	fi
 
 	echo "$target/.wezterm.lua -> $dir/wezterm.lua"
 	ln -sfn "$dir/wezterm.lua" "$target/.wezterm.lua"
+
 }
 
 config-wezterm
