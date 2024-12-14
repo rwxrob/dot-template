@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+: <<'EOM'
+This script setups weechat to work with Twitch using my personal preferences. Feel free to customize to your liking. You can always make changes and just rerun it once weechat is running so that the script can communicate with it. Perhaps the biggest thing to be aware of is that I prefer a very minimal chat window without an input box. I can still type things in, but they just do not appear on the screen. You get around this change or remove `/bar hide input` line.
+EOM
+
+tokenurl=https://antiscuff.com/oauth
+
+read -rp "Twitch user name: " user
+read -rp "Channels separated by commas: " channels
+echo "Generate your OAuth token here: $tokenurl"
+echo "Revoke tokens if exposed: https://id.twitch.tv/oauth2/revoke"
+read -rp "Open in your web browser? [y|N]" resp
+[[ ${resp,,} == y ]] && open $tokenurl
+read -rp "Paste (starting with 'oauth:', empty keeps current): " token
+
+[[ $channels =~ $user ]] || channels+=$user
+
+mkdir -p ~/.weechat
+fifo=~/.weechat/fifo
+log=~/.weechat/log
+if [[ ! -p "$fifo" ]]; then
+	echo "Error: WeeChat FIFO pipe not found at $fifo."
+	echo "Enable it in WeeChat with: /set fifo.pipe.enabled on"
+	echo "You may also need to set the pipe path: /set fifo.pipe.path $fifo"
+	exit 1
+fi
+
+cat <<EOF >"$fifo"
+*/set logger.file.path "$log"
+*/set logger.file.flush_delay 1
+*/set weechat.color.chat_bg 235
+*/set weechat.color.chat_fg 223
+*/set weechat.color.chat_nick_self 214
+*/set weechat.color.chat_prefix_error 124
+*/set weechat.color.chat_prefix_network 66
+*/set weechat.color.chat_prefix_action 214
+*/set weechat.color.chat_highlight 142
+*/set weechat.color.chat_read_marker 214
+*/set weechat.color.chat_host 243
+*/set weechat.color.chat_buffer 214
+*/set weechat.color.separator 243
+*/set weechat.look.prefix_join "👋"
+*/set weechat.look.prefix_action "🌟"
+*/set weechat.look.prefix_error "💢"
+*/set weechat.bar.input_items ",input_text"
+*/bar hide buflist
+*/bar hide title
+*/bar hide input
+*/set irc.color.nicks ""
+*/server add twitch irc.chat.twitch.tv/6667 -ssl
+*/set irc.server.twitch.username "$user"
+*/set irc.server.twitch.tls off
+*/set irc.server.twitch.autoconnect on
+*/set irc.server.twitch.autojoin "#${channels//,/,#}"
+*/filter add hide_quit irc.* irc_quit *
+*/filter add hide_part irc.* irc_part *
+*/save
+EOF
+
+if test -n "$token"; then
+	cat <<EOF >"$fifo"
+*/set irc.server.twitch.password "$token"
+*/save
+EOF
+fi
