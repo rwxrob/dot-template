@@ -15,19 +15,14 @@ local function detect_os()
   end
 end
 
-local os = detect_os()
+local myos = detect_os()
 
 --------------------------- detect_shell ---------------------------
 
 local function detect_shell()
-  if os == "windows" then
-    return {
-      "wsl.exe",
-      --"C:\\Program Files\\Git\\bin\\bash.exe",
-      --"--login",
-      --"-i",
-    }
-  elseif os == "mac" then
+  if myos == "windows" then
+    return { "wsl.exe" }
+  elseif myos == "mac" then
     return { "/opt/homebrew/bin/bash", "--login", }
   else
     return {"/bin/bash", "--login"}
@@ -37,7 +32,7 @@ end
 ---------------------------- detect_font ---------------------------
 
 local function detect_font()
-  if os == "windows" then
+  if myos == "windows" then
     return wezterm.font("Ubuntu Mono")
   else
     return wezterm.font("UbuntuMono Nerd Font")
@@ -53,6 +48,8 @@ return {
   color_scheme = 'Gruvbox Material (Gogh)',
   font = detect_font(),
   font_size = 26,
+
+  default_domain =  myos:match('windows') and "WSL:Ubuntu" or "",
 
   colors = {
     cursor_bg = '#928374',
