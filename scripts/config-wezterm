@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+echo "Replacing ~/.wezterm.lua with symlink/copy."
+ln -sfn "$PWD/wezterm.lua" ~/.wezterm.lua
+
+if [[ $OSTYPE =~ ^darwin ]]; then
+	echo "Installing fontconfig."
+	brew install fontconfig
+fi
+
+if [[ "$OSTYPE" = "msys" ]]; then
+	echo "Installing 'Ubuntu Mono' (NerdFont) fonts."
+	# shellcheck disable=SC2016
+	powershell.exe -Command '& ([scriptblock]::Create((iwr "https://to.loredo.me/Install-NerdFont.ps1"))) -Name "ubuntu-mono" -Confirm:$false
+'
+else
+	if [[ ! -e ~/.local/share/fonts/UbuntuMonoNerdFont-Regular.ttf ]]; then
+		echo "Installing 'UbuntuMono Nerd Font' fonts."
+		mkdir -p ~/.local/share/fonts
+		unzip UbuntuMono.zip -d ~/.local/share/fonts/
+		fc-cache -fv
+	fi
+fi

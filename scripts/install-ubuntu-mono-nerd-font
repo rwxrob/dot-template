@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+zipurl="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/UbuntuMono.zip"
+
+install-on-win () {
+	# shellcheck disable=SC2016
+	powershell.exe -Command '& ([scriptblock]::Create((iwr "https://to.loredo.me/Install-NerdFont.ps1"))) -Name "ubuntu-mono" -Confirm:$false'
+}
+
+install-on-mac () {
+	mkdir -p ~/Library/Fonts
+	curl -fsSL "$zipurl" | tar xzvf -D ~/Library/Fonts
+}
+
+install-on-lin () {
+	mkdir -p ~/.local/share/fonts
+	curl -fsSL "$zipurl" | tar xzvf -D ~/.local/share/fonts
+	fc-cache -fv
+}
+
+echo "Installing 'Ubuntu Mono' (NerdFont) fonts."
+
+if [[ $OSTYPE =~ ^msys || $(uname -r) =~ microsoft ]];then
+	install-on-win
+	exit $?
+fi
+
+if [[ $OSTYPE =~ ^darwin ]];then
+	install-on-mac
+	exit $?
+fi
+
+if [[ $OSTYPE =~ linux ]];then
+	install-on-lin
+	exit $?
+fi
+
+echo "Unsupported OS for this installer." >&s
+exit 1
+
