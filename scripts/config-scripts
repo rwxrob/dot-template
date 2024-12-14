@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+dir=$(dirname "$(realpath "$0")")
+mkdir -p ~/.local/bin
+echo ln -sfn "$dir" ~/.local/bin/scripts
+ln -sfn "$dir" ~/.local/bin
