@@ -6,6 +6,15 @@ EOM
 
 tokenurl=https://antiscuff.com/oauth
 
+mkdir -p ~/.weechat
+fifo=~/.weechat/fifo
+log=~/.weechat/log
+
+if [[ ! -p "$fifo" ]]; then
+	echo "Is weechat running? Start first in another window."
+	exit 1
+fi
+
 read -rp "Twitch user name: " user
 read -rp "Channels separated by commas: " channels
 echo "Generate your OAuth token here: $tokenurl"
@@ -15,18 +24,6 @@ read -rp "Open in your web browser? [y|N]" resp
 read -rp "Paste (starting with 'oauth:', empty keeps current): " token
 
 [[ $channels =~ $user ]] || channels+=$user
-
-mkdir -p ~/.weechat
-fifo=~/.weechat/fifo
-log=~/.weechat/log
-
-if [[ ! -p "$fifo" ]]; then
-	echo "Is weechat running? Start first if not."
-	echo "Error: WeeChat FIFO pipe not found at $fifo."
-	echo "Enable it in WeeChat with: /set fifo.pipe.enabled on"
-	echo "You may also need to set the pipe path: /set fifo.pipe.path $fifo"
-	exit 1
-fi
 
 cat <<EOF >"$fifo"
 */set logger.file.path "$log"
@@ -48,7 +45,6 @@ cat <<EOF >"$fifo"
 */set weechat.bar.input_items ",input_text"
 */bar hide buflist
 */bar hide title
-*/bar hide input
 */set irc.color.nicks ""
 */server add twitch irc.chat.twitch.tv/6667 -ssl
 */set irc.server.twitch.username "$user"
@@ -66,3 +62,5 @@ if test -n "$token"; then
 */save
 EOF
 fi
+
+sleep 5
