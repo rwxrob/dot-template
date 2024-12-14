@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+install-neovim() {
+
+  # macos
+	if [[ $OSTYPE =~ ^darwin ]]; then
+		brew install neovim
+		return
+	fi
+
+	# windows (git bash)
+	if [[ $OSTYPE =~ ^msys ]]; then
+		winget install --id neovim.neovim
+		return
+	fi
+
+	# linux (old, but stable, no coc unfortunately)
+  sudo add-apt-repository ppa:neovim-ppa/stable
+  sudo apt-get install -y software-properties-common
+  sudo apt-get update -y
+  sudo apt-get install -y neovim
+
+}
+
+type node || install-nodejs || exit 1
+install-neovim
