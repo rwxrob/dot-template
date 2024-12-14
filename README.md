@@ -1,6 +1,8 @@
-# 🔰 Beginner dotfiles template
+# 🔰 Beginner dotfiles, installers, and scripts template
 
-This repo is mostly for beginners who want to start with some good default dotfiles. Just look how many there are [here on GitHub](https://github.com/search?q=dotfiles&type=repositories). See my book [*Terminal Velocity*](https://rwxrob.github.io/books/terminal-velocity) for help getting started and a description of how this repo is organized and what it expects. ***Do not run any `setup` scripts here until you understand what they do. They are destructive.***
+***CAUTION: Do not run any `config` or `install` scripts here until you understand what they do. They are destructive.***
+
+This repo is mostly for beginners who want to start with a decent default dotfiles repo and some scripts. There's plenty of [others](https://github.com/search?q=dotfiles&type=repositories) out there as well. Read my book [*Terminal Velocity*](https://rwxrob.github.io/books/terminal-velocity) for help getting started including a description of how this repo is organized and what is expected.
 
 ## Legal
 

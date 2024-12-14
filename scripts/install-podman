@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+install-podman() {
+
+	if [[ $OSTYPE =~ ^msys ]]; then
+		winget install --id redhat.podman
+		return
+	fi
+
+	if [[ $OSTYPE =~ ^darwin ]]; then
+		brew install podman
+		return
+	fi
+
+	if type apt-get &>/dev/null; then
+		sudo apt-get install -y podman
+		return
+	fi
+
+	echo "OS unsupported by this installer: $OSTYPE"
+
+}
+
+install-podman

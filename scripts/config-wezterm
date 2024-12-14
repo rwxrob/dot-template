@@ -1,23 +1,18 @@
 #!/usr/bin/env bash
 
-echo "Replacing ~/.wezterm.lua with symlink/copy."
-ln -sfn "$PWD/wezterm.lua" ~/.wezterm.lua
 
-if [[ $OSTYPE =~ ^darwin ]]; then
-	echo "Installing fontconfig."
-	brew install fontconfig
-fi
+config-wezterm () {
+	dir=$(dirname $(dirname "$(realpath "$0")"))/config/wezterm
+	target=~/.wezterm.lua
 
-if [[ "$OSTYPE" = "msys" ]]; then
-	echo "Installing 'Ubuntu Mono' (NerdFont) fonts."
-	# shellcheck disable=SC2016
-	powershell.exe -Command '& ([scriptblock]::Create((iwr "https://to.loredo.me/Install-NerdFont.ps1"))) -Name "ubuntu-mono" -Confirm:$false
-'
-else
-	if [[ ! -e ~/.local/share/fonts/UbuntuMonoNerdFont-Regular.ttf ]]; then
-		echo "Installing 'UbuntuMono Nerd Font' fonts."
-		mkdir -p ~/.local/share/fonts
-		unzip UbuntuMono.zip -d ~/.local/share/fonts/
-		fc-cache -fv
+	if [[ $OSTYPE =~ ^msys ]]; then
+		: TODO
+	elif [[ $(uname -r) =~ microsoft  ]]; then
+		: TODO
 	fi
-fi
+
+	echo "$target/.wezterm.lua -> $dir/wezterm.lua"
+	ln -sfn "$dir/wezterm.lua" "$target/.wezterm.lua"
+}
+
+config-wezterm

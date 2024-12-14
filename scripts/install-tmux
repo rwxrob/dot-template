@@ -1,15 +1,24 @@
 #!/usr/bin/env bash
 
 install-tmux() {
+
 	if [[ $OSTYPE =~ ^darwin ]]; then
 		brew install tmux
 		return
 	fi
+
 	if [[ $OSTYPE =~ ^msys ]]; then
 		echo "There is no tmux for MSYS2 or Git Bash"
 		return
 	fi
-	sudo apt install -y tmux
+	# windows (git bash)
+	if type apt-get &>/dev/null; then
+		sudo apt-get install -y tmux
+		return
+	fi
+
+	echo "OS unsupported by this installer: $OSTYPE"
+
 }
 
 install-tmux

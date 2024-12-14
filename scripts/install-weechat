@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+install-weechat() {
+
+	if [[ $OSTYPE =~ ^darwin ]]; then
+		brew install weechat
+		return
+	fi
+
+	if [[ $OSTYPE =~ ^msys ]]; then
+		echo "No weechat for Windows. Consider HexChat instead."
+		return
+	fi
+	# linux
+	if type apt-get &>/dev/null; then
+		sudo apt-get install -y weechat
+		return
+	fi
+
+	echo "OS unsupported by this installer: $OSTYPE"
+
+}
+
+install-weechat

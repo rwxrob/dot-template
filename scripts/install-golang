@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+install-golang() {
+
+	if [[ $OSTYPE =~ ^darwin ]]; then
+		brew install golang
+		return
+	fi
+
+	if [[ $OSTYPE =~ ^msys ]]; then
+		winget install --id golang.go
+		return
+	fi
+
+	if type apt-get &>/dev/null; then
+		sudo apt-get install -y golang
+		return
+	fi
+
+	echo "OS unsupported by this installer: $OSTYPE"
+
+}
+
+install-golang

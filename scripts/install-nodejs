@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 
 install-nodejs() {
-
   # macos
 	if [[ $OSTYPE =~ ^darwin ]]; then
 		brew install nodejs
 		return
 	fi
-
 	# windows (git bash)
 	if [[ $OSTYPE =~ ^msys ]]; then
 		winget install --id openjs.nodejs
 		return
 	fi
+	# linux (old, but stable, no coc unfortunately)
+	if type apt-get &>/dev/null; then
+		sudo apt-get install -y nodejs
+		return
+	fi
 
-	sudo apt install nodejs
+	echo "OS unsupported by this installer: $OSTYPE"
 
 }
 

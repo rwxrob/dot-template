@@ -1,7 +1,0 @@
-#!/bin/sh
-
-for i in wezterm bash tmux vim; do
-	cd "$i" || exit
-	./setup
-	cd - || exit
-done

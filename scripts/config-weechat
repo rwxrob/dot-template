@@ -19,7 +19,9 @@ read -rp "Paste (starting with 'oauth:', empty keeps current): " token
 mkdir -p ~/.weechat
 fifo=~/.weechat/fifo
 log=~/.weechat/log
+
 if [[ ! -p "$fifo" ]]; then
+	echo "Is weechat running? Start first if not."
 	echo "Error: WeeChat FIFO pipe not found at $fifo."
 	echo "Enable it in WeeChat with: /set fifo.pipe.enabled on"
 	echo "You may also need to set the pipe path: /set fifo.pipe.path $fifo"
