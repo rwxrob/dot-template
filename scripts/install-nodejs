@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+install-nodejs() {
+
+  # macos
+	if [[ $OSTYPE =~ ^darwin ]]; then
+		brew install nodejs
+		return
+	fi
+
+	# windows (git bash)
+	if [[ $OSTYPE =~ ^msys ]]; then
+		winget install --id openjs.nodejs
+		return
+	fi
+
+	sudo apt install nodejs
+
+}
+
+install-nodejs
