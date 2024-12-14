@@ -6,11 +6,13 @@ install-neovim() {
 		brew install neovim
 		return
 	fi
+
 	# windows (git bash)
 	if [[ $OSTYPE =~ ^msys ]]; then
 		winget install --id neovim.neovim
 		return
 	fi
+
 	# linux (old, but stable, no coc unfortunately)
 	if type apt-get &>/dev/null; then
 		sudo add-apt-repository ppa:neovim-ppa/stable
