@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 : <<'EOM'
-This script setups weechat to work with Twitch using my personal preferences. Feel free to customize to your liking. You can always make changes and just rerun it once weechat is running so that the script can communicate with it. Perhaps the biggest thing to be aware of is that I prefer a very minimal chat window without an input box. I can still type things in, but they just do not appear on the screen. You get around this change or remove `/bar hide input` line.
+This script setups weechat to work with Twitch using my personal preferences. Feel free to customize to your liking. You can always make changes and just rerun it once weechat is running so that the script can communicate with it. Perhaps the biggest thing to be aware of is that I prefer a very minimal chat window.
 EOM
 
 tokenurl=https://antiscuff.com/oauth
